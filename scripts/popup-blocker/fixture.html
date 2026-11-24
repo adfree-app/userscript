@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Popup Blocker (strict) fixture</title>
+    <style>
+      body {
+        font: 14px system-ui;
+        margin: 32px;
+      }
+      button,
+      input {
+        font: inherit;
+        margin: 4px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Ad-heavy page</h1>
+    <button id="open-js" type="button">window.open()</button>
+    <p><a id="blank-link" href="https://ads.example.com/offer" target="_blank">New window link</a></p>
+    <p><a id="self-link" href="/local">Same tab link (allowed)</a></p>
+    <form id="blank-form" action="https://ads.example.com/subscribe" target="_blank" method="get">
+      <input name="email" value="a@b.c" />
+      <button type="submit">Submit into a new window</button>
+    </form>
+    <script>
+      document.getElementById('open-js').addEventListener('click', () => {
+        window.open('https://ads.example.com/interstitial', '_blank')
+      })
+    </script>
+  </body>
+</html>

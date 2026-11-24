@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>YouTube Premium fixture</title>
+    <script>
+      window.ytInitialPlayerResponse = {
+        videoDetails: { videoId: 'dQw4w9WgXcQ', title: 'Fixture video' },
+        adPlacements: [{ adPlacementRenderer: { renderer: { instreamVideoAdRenderer: {} } } }],
+        playerAds: [{ playerLegacyDesktopWatchAdsRenderer: {} }],
+        adSlots: [{ adSlotRenderer: {} }]
+      }
+    </script>
+    <style>
+      body {
+        font: 14px system-ui;
+        margin: 24px;
+      }
+      .box {
+        padding: 8px;
+        margin: 8px 0;
+        border: 1px dashed #888;
+      }
+    </style>
+  </head>
+  <body>
+    <ytd-topbar-logo-renderer id="masthead-logo">
+      <a id="logo" href="/" aria-label="YouTube Home">
+        <yt-icon id="logo-icon"><svg width="90" height="20" viewBox="0 0 90 20"></svg></yt-icon>
+      </a>
+    </ytd-topbar-logo-renderer>
+
+    <div id="player-ads" class="box">sidebar ad</div>
+    <ytd-ad-slot-renderer class="box">masthead ad slot</ytd-ad-slot-renderer>
+    <ytd-statement-banner-renderer class="box">Try Premium</ytd-statement-banner-renderer>
+
+    <div id="movie_player" class="html5-video-player ad-showing">
+      <video class="html5-main-video" disablepictureinpicture></video>
+      <button class="ytp-ad-skip-button-modern">Skip</button>
+    </div>
+  </body>
+</html>

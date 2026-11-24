@@ -1,0 +1,52 @@
+{
+  "name": "shin-userscript",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "bun usm:build && bun usm:catalog && nuxt generate",
+    "build:ssr": "nuxt build",
+    "dev": "nuxt dev",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "lint": "eslint .",
+    "typecheck": "nuxt typecheck",
+    "usm": "usm",
+    "usm:build": "usm build --out public/userscripts",
+    "usm:catalog": "usm catalog --out public/userscripts",
+    "usm:check": "usm check --strict",
+    "usm:dev": "usm dev",
+    "usm:test": "usm test",
+    "release:scripts": "bun tools/release/release-all.ts",
+    "release:dry": "DRY_RUN=1 bun tools/release/release-all.ts",
+    "release:all": "bun run usm:build && bun run usm:catalog",
+    "build:pages": "bun run usm:build && bun run usm:catalog && nuxt generate"
+  },
+  "dependencies": {
+    "@iconify-json/lucide": "^1.2.158",
+    "@iconify-json/simple-icons": "^1.2.103",
+    "@nuxt/ui": "^4.13.0",
+    "nitro": "^3.0.261103-rc",
+    "tailwindcss": "^4.3.5"
+  },
+  "devDependencies": {
+    "@nuxt/eslint": "^1.17.0",
+    "@semantic-release/changelog": "^7.0.0",
+    "@semantic-release/commit-analyzer": "^14.0.0-beta.5",
+    "@semantic-release/git": "^11.0.1",
+    "@semantic-release/github": "^12.0.11",
+    "@semantic-release/npm": "^14.0.0-beta.3",
+    "@semantic-release/release-notes-generator": "^15.0.0-beta.4",
+    "eslint": "^10.15.0",
+    "eslint-plugin-better-tailwindcss": "^4.11.0",
+    "nuxt": "^4.7.0",
+    "semantic-release": "^26.0.1",
+    "typescript": "^6.0.3",
+    "userscript-maker": "file:packages/userscript-maker",
+    "vue-tsc": "^3.3.14"
+  },
+  "packageManager": "bun@1.4.4",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adfree-app/userscript.git"
+  }
+}

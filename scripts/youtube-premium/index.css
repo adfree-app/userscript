@@ -1,0 +1,49 @@
+/* Ads and Premium upsells that are cheaper to hide than to remove. */
+#player-ads,
+#masthead-ad,
+#offer-module,
+ytd-banner-promo-renderer,
+ytd-video-masthead-ad-v3-renderer,
+ytd-in-feed-ad-layout-renderer,
+ytd-ad-slot-renderer,
+ytd-display-ad-renderer,
+ytd-promoted-sparkles-web-renderer,
+ytd-promoted-video-renderer,
+ytd-compact-promoted-video-renderer,
+ytd-engagement-panel-section-list-renderer[target-id='engagement-panel-ads'],
+ytm-promoted-sparkles-web-renderer,
+ytm-companion-ad-renderer,
+#related ytd-promoted-sparkles-web-renderer,
+.ytp-ad-overlay-container,
+.ytp-ad-progress-list,
+.ytp-ad-module {
+  display: none !important;
+}
+
+/* "Get Premium" nagging: the mealbar, the statement banner, the ad-block dialog. */
+ytd-statement-banner-renderer,
+ytd-mealbar-promo-renderer,
+yt-mealbar-promo-renderer,
+ytd-enforcement-message-view-model,
+ytd-popup-container:has(a[href='/premium']) {
+  display: none !important;
+}
+
+/* The player keeps a black box where the ad was: let the video fill it. */
+.html5-video-player.ad-showing .html5-main-video {
+  visibility: visible !important;
+}
+
+/* Premium wordmark in the masthead (the SVG carries the brand red; the wordmark flips per theme). */
+.ytp-premium-logo {
+  display: block;
+  width: auto;
+  height: 20px;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+ytd-topbar-logo-renderer a#logo .ytp-premium-logo,
+ytd-topbar-logo-renderer #logo-icon .ytp-premium-logo {
+  height: 20px;
+}

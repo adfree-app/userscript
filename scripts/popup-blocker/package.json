@@ -1,0 +1,7 @@
+{
+  "name": "@adfree-app/userscript-popup-blocker",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Blocks window.open(), target=\"_blank\" links and popup forms, then asks deny / allow / background tab / go.",
+  "license": "MIT"
+}

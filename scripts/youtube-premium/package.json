@@ -1,0 +1,7 @@
+{
+  "name": "@adfree-app/userscript-youtube-premium",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Client-side premium-ish YouTube: no ads, background playback, best quality, Premium logo in the masthead.",
+  "license": "MIT"
+}
