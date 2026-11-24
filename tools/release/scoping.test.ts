@@ -84,6 +84,30 @@ function fixtureRepo(): string {
   return root
 }
 
+/**
+ * Environment for the sandboxed runs.
+ *
+ * `CI` and the provider's own `GITHUB_*` variables have to go: semantic-release
+ * trusts them over the local git state, and on a runner it then reads a branch
+ * named `undefined` and refuses to release. The fixture repo is not the CI
+ * repository, so nothing about the runner applies to it.
+ */
+function sandboxEnv(): NodeJS.ProcessEnv {
+  const env: NodeJS.ProcessEnv = {}
+  for (const [key, value] of Object.entries(process.env)) {
+    if (/^(CI|CI_.*|GITHUB_.*|GITLAB_.*|CIRCLE_.*|TRAVIS.*|BUILDKITE.*|BITBUCKET.*)$/.test(key)) continue
+    env[key] = value
+  }
+  return {
+    ...env,
+    GH_TOKEN: 'dry-run',
+    GIT_AUTHOR_NAME: 'release',
+    GIT_AUTHOR_EMAIL: 'release@example.test',
+    GIT_COMMITTER_NAME: 'release',
+    GIT_COMMITTER_EMAIL: 'release@example.test'
+  }
+}
+
 function release(root: string, slug: string, dryRun = true): { out: string, code: number } {
   try {
     const out = execFileSync(
@@ -101,7 +125,7 @@ function release(root: string, slug: string, dryRun = true): { out: string, code
         cwd: join(root, 'scripts', slug),
         encoding: 'utf8',
         stdio: ['ignore', 'pipe', 'pipe'],
-        env: { ...process.env, GH_TOKEN: 'dry-run' }
+        env: sandboxEnv()
       }
     )
     return { out, code: 0 }
