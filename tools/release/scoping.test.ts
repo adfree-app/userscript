@@ -144,7 +144,7 @@ describe('per-script release scoping', () => {
     git(root, 'commit', '-am', 'feat(demo): add a shiny button')
 
     const { out, code } = release(root, 'demo')
-    expect(code).toBe(0)
+    expect(code, out).toBe(0)
     expect(out).toContain('1.1.0')
     expect(out).toContain('add a shiny button')
   }, 60_000)
@@ -155,7 +155,7 @@ describe('per-script release scoping', () => {
     git(root, 'commit', '-am', 'fix(other): unrelated work')
 
     const { out, code } = release(root, 'demo')
-    expect(code).toBe(0)
+    expect(code, out).toBe(0)
     // the filtered commit list is empty, so semantic-release finds no release
     expect(out).not.toContain('unrelated work')
     expect(out).toMatch(/There are no relevant changes|no release/i)
@@ -169,7 +169,7 @@ describe('per-script release scoping', () => {
     git(root, 'commit', '-am', 'feat(other): other feature')
 
     const { out, code } = release(root, 'demo')
-    expect(code).toBe(0)
+    expect(code, out).toBe(0)
     expect(out).toContain('keep the panel on screen')
     expect(out).not.toContain('other feature')
     expect(out).toContain('1.0.1') // fix -> patch, not minor
@@ -181,7 +181,7 @@ describe('per-script release scoping', () => {
     git(root, 'commit', '-am', 'feat(demo): add a shiny button')
 
     const { code } = release(root, 'demo', false)
-    expect(code).toBe(0)
+    expect(code, out).toBe(0)
 
     const pkg = JSON.parse(readFileSync(join(root, DEMO, 'package.json'), 'utf8')) as { version: string }
     expect(pkg.version).toBe('1.1.0')
