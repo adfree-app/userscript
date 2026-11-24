@@ -1,0 +1,3 @@
+[submodule "packages/userscript-maker"]
+	path = packages/userscript-maker
+	url = https://github.com/adfree-app/userscript-maker.git

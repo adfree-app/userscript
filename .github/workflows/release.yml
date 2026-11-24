@@ -31,6 +31,8 @@ jobs:
         with:
           # semantic-release reads tags and the whole history
           fetch-depth: 0
+          # the userscript-maker CLI is a submodule: `usm` is its TypeScript entry
+          submodules: recursive
 
       - name: Install node
         uses: actions/setup-node@v7

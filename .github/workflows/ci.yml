@@ -13,6 +13,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v7
+        with:
+          # the userscript-maker CLI is a submodule: `usm` is its TypeScript entry
+          submodules: recursive
 
       - name: Install bun
         uses: oven-sh/setup-bun@v2
