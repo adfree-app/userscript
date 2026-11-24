@@ -17,6 +17,12 @@ jobs:
           # the userscript-maker CLI is a submodule: `usm` is its TypeScript entry
           submodules: recursive
 
+      - name: Install node
+        uses: actions/setup-node@v7
+        with:
+          # the release tooling in tools/ runs semantic-release, which needs >= 26.13
+          node-version: 26
+
       - name: Install bun
         uses: oven-sh/setup-bun@v2
         with:
@@ -35,4 +41,4 @@ jobs:
         run: bun run usm:check
 
       - name: Test userscripts and the release tooling
-        run: bun test ./scripts tools
+        run: bun test

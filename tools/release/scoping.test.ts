@@ -180,7 +180,7 @@ describe('per-script release scoping', () => {
     write(join(root, DEMO, 'index.ts'), '// demo v2\n')
     git(root, 'commit', '-am', 'feat(demo): add a shiny button')
 
-    const { code } = release(root, 'demo', false)
+    const { out, code } = release(root, 'demo', false)
     expect(code, out).toBe(0)
 
     const pkg = JSON.parse(readFileSync(join(root, DEMO, 'package.json'), 'utf8')) as { version: string }
