@@ -75,7 +75,10 @@ function fixtureRepo(): string {
   // an offline "remote": git rewrites the GitHub URL to a local bare repo, so
   // semantic-release sees a normal GitHub repo and still works without network
   const origin = join(root, 'origin.git')
-  execFileSync('git', ['init', '--bare', '-q', origin])
+  // `--initial-branch` matters: a bare repo whose HEAD points at a branch that
+  // does not exist makes semantic-release's `git fetch <url>` fail with
+  // "couldn't find remote ref HEAD" on machines whose default branch is master.
+  execFileSync('git', ['init', '--bare', '--initial-branch=main', '-q', origin])
   git(root, 'remote', 'add', 'origin', 'https://github.com/adfree-app/userscript.git')
   git(root, 'config', `url.file://${origin}.insteadOf`, 'https://github.com/adfree-app/userscript.git')
   git(root, 'push', '-q', 'origin', 'main', '--tags')
